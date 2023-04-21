@@ -23,13 +23,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/home", "/signup",
-                             "/css/**", "/js/**").permitAll()
+                        "/css/**", "/js/**").permitAll()
+
+                .antMatchers("/book/add")
+                .access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/book", "/review", "/review/**")
+                .access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
                 .anyRequest().authenticated()
 
-        .and()
+                .and()
                 .formLogin()
                 .defaultSuccessUrl("/book", true)
-        .and()
+                .and()
                 .logout();
     }
 
