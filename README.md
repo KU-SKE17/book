@@ -1,4 +1,4 @@
-# intro to Spring Security
+# intro to Spring Security 3
 
 demo-project: ku.book
 
